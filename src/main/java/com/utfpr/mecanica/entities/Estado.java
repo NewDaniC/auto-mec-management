@@ -1,74 +1,61 @@
 package com.utfpr.mecanica.entities;
 
 import java.io.Serializable;
-import java.time.Instant;
-//import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "tb_pessoa")
-public class Pessoa implements Serializable {
+@Table(name = "tb_estado")
+public class Estado implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String cpf;
 	private String nome;
-	                                           //pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy", timezone = "GMT")
-	private Instant nascimeto;
-	private String email;
+
+	/*******************************************************/
+	// ESTADO CIDADE
 	
-	public Pessoa () {
+	@JsonIgnore
+	@OneToMany(mappedBy = "estado")
+	private List<Cidade> cidades = new ArrayList<>();
+	/*******************************************************/
+	
+	public Estado() {
 		
 	}
 	
-	public Pessoa(Long id, String cpf, String nome, Instant nascimeto, String email) {
+	public Estado(Long id, String nome) {
 		super();
 		this.id = id;
-		this.cpf = cpf;
 		this.nome = nome;
-		this.nascimeto = nascimeto;
-		this.email = email;
 	}
+
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getCpf() {
-		return cpf;
-	}
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
+
 	public String getNome() {
 		return nome;
 	}
+
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-	public Instant getNascimeto() {
-		return nascimeto;
-	}
-	public void setNascimeto(Instant nascimeto) {
-		this.nascimeto = nascimeto;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
 	}
 
 	@Override
@@ -84,10 +71,11 @@ public class Pessoa implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Pessoa other = (Pessoa) obj;
+		Estado other = (Estado) obj;
 		return Objects.equals(id, other.id);
 	}
-	
-	
 
+	public List<Cidade> getCidades() {
+		return cidades;
+	}
 }
