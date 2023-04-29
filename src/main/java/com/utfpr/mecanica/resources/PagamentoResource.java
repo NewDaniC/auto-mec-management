@@ -9,25 +9,25 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.utfpr.mecanica.entities.User;
-import com.utfpr.mecanica.services.UserService;
+import com.utfpr.mecanica.entities.Pagamento;
+import com.utfpr.mecanica.services.PagamentoService;
 
 @RestController
-@RequestMapping(value = "/user")
-public class UserResource {
+@RequestMapping(value = "/pagamento")
+public class PagamentoResource {
 
 	@Autowired 
-	private UserService service;
+	private PagamentoService service;
 	
 	@GetMapping
-	public ResponseEntity<List<User>> findAll() {
-		List<User> list = service.findAll();
+	public ResponseEntity<List<Pagamento>> findAll() {
+		List<Pagamento> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 	}
 
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<User> findById(@PathVariable Long id) {
-		User obj = service.findById(id);
+	public ResponseEntity<Pagamento> findById(@PathVariable Long id) {
+		Pagamento obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
 }

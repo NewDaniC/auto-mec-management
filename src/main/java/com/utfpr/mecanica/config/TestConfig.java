@@ -13,14 +13,20 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
+import com.utfpr.mecanica.entities.Categoria;
 import com.utfpr.mecanica.entities.Cidade;
 import com.utfpr.mecanica.entities.Endereco;
 import com.utfpr.mecanica.entities.Estado;
+import com.utfpr.mecanica.entities.Pagamento;
 import com.utfpr.mecanica.entities.Pessoa;
 import com.utfpr.mecanica.entities.User;
+import com.utfpr.mecanica.entities.enums.EstadoPagamento;
+import com.utfpr.mecanica.entities.enums.TipoPagamento;
+import com.utfpr.mecanica.repositories.CategoriaRepository;
 import com.utfpr.mecanica.repositories.CidadeRepository;
 import com.utfpr.mecanica.repositories.EnderecoRepository;
 import com.utfpr.mecanica.repositories.EstadoRepository;
+import com.utfpr.mecanica.repositories.PagamentoRepository;
 import com.utfpr.mecanica.repositories.PessoaRepository;
 import com.utfpr.mecanica.repositories.UserRepository;
 
@@ -42,6 +48,12 @@ public class TestConfig implements CommandLineRunner {
 	
 	@Autowired
 	private EstadoRepository estadoRepository;
+	
+	@Autowired
+	private PagamentoRepository pagamentoRepository;
+	
+	@Autowired
+	private CategoriaRepository categoriaRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -70,6 +82,12 @@ public class TestConfig implements CommandLineRunner {
 		Endereco end4 = new Endereco(null, "Rua Manuas", "555", "Casa", "Alamedas", "12345678", cid4);
 		enderecoRepository.saveAll(Arrays.asList(end1, end2, end3, end4));
 		
+		Pagamento pag1 = new Pagamento (null, EstadoPagamento.QUITADO, TipoPagamento.DINHEIRO, null, Instant.now(), 0.0, 0);
+		pagamentoRepository.saveAll(Arrays.asList(pag1));
 		
+		Categoria cat1 = new Categoria(null, "Chave de Seta");
+		Categoria cat2 = new Categoria(null, "Fusivel");
+		Categoria cat3 = new Categoria(null, "Oleo de Motor");
+		categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
 	}
 }
