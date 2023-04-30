@@ -95,13 +95,19 @@ public class TestConfig implements CommandLineRunner {
 		Pagamento pag1 = new Pagamento (null, EstadoPagamento.QUITADO, TipoPagamento.DINHEIRO, null, Instant.now(), 0.0, 0);
 		pagamentoRepository.saveAll(Arrays.asList(pag1));
 		
-		Categoria cat1 = new Categoria(null, "Chave de Seta");
-		Categoria cat2 = new Categoria(null, "Fusivel");
-		Categoria cat3 = new Categoria(null, "Oleo de Motor");
+		Categoria cat1 = new Categoria(null, "Pneu");
+		Categoria cat2 = new Categoria(null, "Eletrica");
+		Categoria cat3 = new Categoria(null, "Lubrificante");
 		categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
 		
-		Item ite1 = new Item (null, "Oleo 20w15", "Oleo de Motor - Lubrax", 10.0);
-		itemRepository.saveAll(Arrays.asList(ite1));
+		Item item1 = new Item (null, "Oleo 20w15", "Oleo de Motor - Lubrax", 10.0);
+		Item item2 = new Item (null, "Fusivel 10 A", "Fusivel - Fusitec", 2.0);
+		itemRepository.saveAll(Arrays.asList(item1, item2));
+		
+		// Preenchendo tabela tb_item_categoria
+		item1.getCategories().add(cat3);
+		item2.getCategories().add(cat2);
+		itemRepository.saveAll(Arrays.asList(item1, item2));
 		
 		Manutencao man1 = new Manutencao(null, Instant.parse("2023-02-15T00:00:00Z"), null, 1200000);
 		Manutencao man2 = new Manutencao(null, Instant.parse("2023-03-20T00:00:00Z"), null, 1234567);
