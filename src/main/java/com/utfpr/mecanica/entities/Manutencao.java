@@ -2,12 +2,15 @@ package com.utfpr.mecanica.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -21,6 +24,13 @@ public class Manutencao implements Serializable {
 	private Instant dataEntrada;
 	private Instant dataSaida;
 	private Integer kilometragem;
+	
+	/*******************************************************/
+	// MANUTENCAO ITEM
+	
+	@OneToMany(mappedBy = "id.manutencao")
+	private Set<Servico> servico = new HashSet<>();
+	/*******************************************************/
 	
 	public Manutencao () {
 		
@@ -57,6 +67,10 @@ public class Manutencao implements Serializable {
 	}
 	public void setKilometragem(Integer kilometragem) {
 		this.kilometragem = kilometragem;
+	}
+	
+	public Set<Servico> getServico(){
+		return servico;
 	}
 
 	@Override

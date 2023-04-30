@@ -21,6 +21,7 @@ import com.utfpr.mecanica.entities.Item;
 import com.utfpr.mecanica.entities.Manutencao;
 import com.utfpr.mecanica.entities.Pagamento;
 import com.utfpr.mecanica.entities.Pessoa;
+import com.utfpr.mecanica.entities.Servico;
 import com.utfpr.mecanica.entities.User;
 import com.utfpr.mecanica.entities.enums.EstadoPagamento;
 import com.utfpr.mecanica.entities.enums.TipoPagamento;
@@ -32,6 +33,7 @@ import com.utfpr.mecanica.repositories.ItemRepository;
 import com.utfpr.mecanica.repositories.ManutencaoRepository;
 import com.utfpr.mecanica.repositories.PagamentoRepository;
 import com.utfpr.mecanica.repositories.PessoaRepository;
+import com.utfpr.mecanica.repositories.ServicoRepository;
 import com.utfpr.mecanica.repositories.UserRepository;
 
 @Configuration
@@ -64,6 +66,9 @@ public class TestConfig implements CommandLineRunner {
 	
 	@Autowired
 	private ItemRepository itemRepository;
+	
+	@Autowired
+	private ServicoRepository servicoRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -114,6 +119,10 @@ public class TestConfig implements CommandLineRunner {
 		Manutencao man3 = new Manutencao(null, Instant.parse("2023-04-01T00:00:00Z"), null, 85000);
 		manutencaoRepository.saveAll(Arrays.asList(man1, man2, man3));
 		
+		Servico ser1 = new Servico(man1, item1, item1.getPrice(), 5, 0.0, "Troca de oleo - Sem problemas");
+		Servico ser2 = new Servico(man1, item2, item2.getPrice(), 1, 0.0, "Troca de fusivel - Sem problemas");
+		Servico ser3 = new Servico(man2, item1, item1.getPrice(), 10, 10.0, "Troca de oleo - Sem problemas");
+		servicoRepository.saveAll(Arrays.asList(ser1, ser2, ser3));
 		
 	}
 }
