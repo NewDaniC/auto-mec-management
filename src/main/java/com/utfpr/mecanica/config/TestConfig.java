@@ -17,6 +17,7 @@ import com.utfpr.mecanica.entities.Categoria;
 import com.utfpr.mecanica.entities.Cidade;
 import com.utfpr.mecanica.entities.Endereco;
 import com.utfpr.mecanica.entities.Estado;
+import com.utfpr.mecanica.entities.Item;
 import com.utfpr.mecanica.entities.Manutencao;
 import com.utfpr.mecanica.entities.Pagamento;
 import com.utfpr.mecanica.entities.Pessoa;
@@ -27,6 +28,7 @@ import com.utfpr.mecanica.repositories.CategoriaRepository;
 import com.utfpr.mecanica.repositories.CidadeRepository;
 import com.utfpr.mecanica.repositories.EnderecoRepository;
 import com.utfpr.mecanica.repositories.EstadoRepository;
+import com.utfpr.mecanica.repositories.ItemRepository;
 import com.utfpr.mecanica.repositories.ManutencaoRepository;
 import com.utfpr.mecanica.repositories.PagamentoRepository;
 import com.utfpr.mecanica.repositories.PessoaRepository;
@@ -59,6 +61,9 @@ public class TestConfig implements CommandLineRunner {
 	
 	@Autowired
 	private ManutencaoRepository manutencaoRepository;
+	
+	@Autowired
+	private ItemRepository itemRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -95,9 +100,14 @@ public class TestConfig implements CommandLineRunner {
 		Categoria cat3 = new Categoria(null, "Oleo de Motor");
 		categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
 		
+		Item ite1 = new Item (null, "Oleo 20w15", "Oleo de Motor - Lubrax", 10.0);
+		itemRepository.saveAll(Arrays.asList(ite1));
+		
 		Manutencao man1 = new Manutencao(null, Instant.parse("2023-02-15T00:00:00Z"), null, 1200000);
 		Manutencao man2 = new Manutencao(null, Instant.parse("2023-03-20T00:00:00Z"), null, 1234567);
 		Manutencao man3 = new Manutencao(null, Instant.parse("2023-04-01T00:00:00Z"), null, 85000);
 		manutencaoRepository.saveAll(Arrays.asList(man1, man2, man3));
+		
+		
 	}
 }

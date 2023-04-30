@@ -12,25 +12,29 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 
 @Entity
-@Table(name = "tb_categoria")
-public class Categoria implements Serializable {
+@Table(name = "tb_item")
+public class Item implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
-	
-	@Transient //A anotação @Transient indica que um atributo de uma entidade não deve ser persistido no banco de dados.
-	private Set<Item> item = new HashSet<>();
+	private String description;
+	private Double price;
 
-	public Categoria() {
+	@Transient
+	private Set<Categoria> categories = new HashSet<>();
+
+	public Item() {
 	}
 
-	public Categoria(Long id, String name) {
+	public Item(Long id, String name, String description, Double price) {
 		super();
 		this.id = id;
 		this.name = name;
+		this.description = description;
+		this.price = price;
 	}
 
 	public Long getId() {
@@ -48,9 +52,25 @@ public class Categoria implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	public Set<Item> getItem() {
-		return item;
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+
+	public Set<Categoria> getCategories() {
+		return categories;
 	}
 
 	@Override
@@ -69,7 +89,7 @@ public class Categoria implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Categoria other = (Categoria) obj;
+		Item other = (Item) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
