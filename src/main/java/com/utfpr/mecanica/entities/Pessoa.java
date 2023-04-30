@@ -27,18 +27,20 @@ public class Pessoa implements Serializable {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
 	private Instant nascimeto;
 	private String email;
+	private String telefone;
 	
 	public Pessoa () {
 		
 	}
 	
-	public Pessoa(Long id, String cpf, String nome, Instant nascimeto, String email) {
+	public Pessoa(Long id, String cpf, String nome, Instant nascimeto, String email, String telefone) {
 		super();
 		this.id = id;
 		this.cpf = cpf;
 		this.nome = nome;
 		this.nascimeto = nascimeto;
 		this.email = email;
+		this.telefone = telefone;
 	}
 	
 	public Long getId() {
@@ -71,6 +73,12 @@ public class Pessoa implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	public String getTelefone() {
+		return telefone;
+	}
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
 
 	@Override
 	public int hashCode() {
@@ -88,7 +96,4 @@ public class Pessoa implements Serializable {
 		Pessoa other = (Pessoa) obj;
 		return Objects.equals(id, other.id);
 	}
-	
-	
-
 }

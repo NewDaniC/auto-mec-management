@@ -1,17 +1,16 @@
 package com.utfpr.mecanica.entities.enums;
 
-public enum TipoPagamento {
-
-	DINHEIRO(1),
-	CARTAOCREDITO(2),
-	CARTAODEBITO(3),
-	PIX(4),
-	CHEQUE(5),
-	BOLETO(6);
+public enum CorDoVeiculo {
+	ROSA(1),
+	PRETO(2),
+	BRANCO(3),
+	PRATA(4),
+	AZUL(5),
+	AMARELO(6);
 	
 	private int code;
 	
-	private TipoPagamento(int code) {
+	private CorDoVeiculo(int code) {
 		this.code = code;
 	}
 

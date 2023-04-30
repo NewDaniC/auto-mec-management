@@ -1,17 +1,14 @@
 package com.utfpr.mecanica.entities.enums;
 
-public enum TipoPagamento {
+public enum TipoCargo {
+	ADMINISTRACAO(1),
+	SECRETARIO(2),
+	MECANICO(3),
+	RECEPCAO(4);
 
-	DINHEIRO(1),
-	CARTAOCREDITO(2),
-	CARTAODEBITO(3),
-	PIX(4),
-	CHEQUE(5),
-	BOLETO(6);
-	
 	private int code;
 	
-	private TipoPagamento(int code) {
+	private TipoCargo(int code) {
 		this.code = code;
 	}
 

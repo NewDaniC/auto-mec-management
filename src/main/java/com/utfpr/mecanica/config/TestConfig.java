@@ -77,8 +77,8 @@ public class TestConfig implements CommandLineRunner {
 		User user2 = new User(null, "Alex Green", "alex@gmail.com", "977777777", "123456");
 		userRepository.saveAll(Arrays.asList(user1, user2)); /* Salva esses objetos no BD */
 		
-		Pessoa pes1 = new Pessoa(null, "85858585", "Maria", Instant.parse("2019-06-20T00:00:00Z"), "maria@gmail.com");
-		Pessoa pes2 = new Pessoa(null, "54547474", "Rodrigo", Instant.parse("2002-07-21T00:00:00Z"), "rodrigo@gmail.com");
+		Pessoa pes1 = new Pessoa(null, "85858585", "Maria", Instant.parse("2019-06-20T00:00:00Z"), "maria@gmail.com", "45999999999");
+		Pessoa pes2 = new Pessoa(null, "54547474", "Rodrigo", Instant.parse("2002-07-21T00:00:00Z"), "rodrigo@gmail.com", "45988888888");
 		pessoaRepository.saveAll(Arrays.asList(pes1, pes2));
 		
 		Estado est1 = new Estado(null, "Paraná");
