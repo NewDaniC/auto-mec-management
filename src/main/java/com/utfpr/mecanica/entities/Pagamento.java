@@ -1,7 +1,6 @@
 package com.utfpr.mecanica.entities;
 
 import java.io.Serializable;
-import java.text.DecimalFormat;
 import java.time.Instant;
 import java.util.Objects;
 

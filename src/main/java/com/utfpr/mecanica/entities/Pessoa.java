@@ -23,8 +23,8 @@ public class Pessoa implements Serializable {
 	private Long id;
 	private String cpf;
 	private String nome;
-	                                           //pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy", timezone = "GMT")
+
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
 	private Instant nascimeto;
 	private String email;
 	
@@ -40,6 +40,7 @@ public class Pessoa implements Serializable {
 		this.nascimeto = nascimeto;
 		this.email = email;
 	}
+	
 	public Long getId() {
 		return id;
 	}
