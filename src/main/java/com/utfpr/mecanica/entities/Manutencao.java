@@ -89,7 +89,28 @@ public class Manutencao implements Serializable {
 	public Set<Servico> getServico(){
 		return servico;
 	}
-
+	
+	public Double getTotal() {
+		double sum = 0.0;
+		for (Servico x : servico) {
+			sum += x.getSubTotal();
+		}
+		return sum;
+	}
+	
+	/*
+	public Double getTotal() {
+	    double sum = 0.0;
+	    for (Servico x : servico) {
+	        if (x.getDesconto() == 0.0) {
+	            sum += x.getSubTotal();
+	        } else {
+	            sum += x.getTotalDesconto();
+	        }
+	    }
+	    return sum;
+	}
+	*/
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);

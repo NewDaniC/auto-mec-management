@@ -85,6 +85,23 @@ public class Servico implements Serializable {
 	public void setDescricaoServico(String descricaoServico) {
 		DescricaoServico = descricaoServico;
 	}
+	
+	/*
+	public Double getSubTotal() {
+		return preco * quantidade;
+	}
+	*/
+	public Double getSubTotal() {
+	    double subtotal = preco * quantidade;
+	    if (desconto != null) {
+	        subtotal -= subtotal * (desconto / 100.0);
+	    }
+	    return subtotal;
+	}
+	
+	public Double getTotalDesconto() {
+		return (desconto / 100.0) * quantidade * preco;
+	}
 
 	@Override
 	public int hashCode() {
@@ -101,5 +118,5 @@ public class Servico implements Serializable {
 			return false;
 		Servico other = (Servico) obj;
 		return Objects.equals(id, other.id);
-	}	
+	}
 }

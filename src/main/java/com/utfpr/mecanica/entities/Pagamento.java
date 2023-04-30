@@ -1,6 +1,7 @@
 package com.utfpr.mecanica.entities;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
 import java.time.Instant;
 import java.util.Objects;
 
@@ -122,6 +123,27 @@ public class Pagamento implements Serializable {
 
 	public void setManutencao(Manutencao manutencao) {
 		this.manutencao = manutencao;
+	}
+	
+	public Double getTotalPagamento() {
+	    Double total = manutencao.getTotal();
+	    
+	    if (numeroDeParcelas > 2) {
+	        Double juros = total * 0.03 * numeroDeParcelas;
+	        total += juros;
+	    }    
+	    
+	    if (desconto == 0.0) {
+	    	return total;
+	    } else {
+	    	return total - (total * desconto / 100);
+	    }
+	}
+	
+	public Double getValorParcela() {
+		Double valorParcela = 0.0;
+		valorParcela = getTotalPagamento()/numeroDeParcelas;
+	    return valorParcela;
 	}
 
 	@Override
