@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,6 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -33,6 +36,13 @@ public class Item implements Serializable {
 		joinColumns = @JoinColumn(name = "produto_id"),
 		inverseJoinColumns = @JoinColumn(name = "categoria_id"))
 	private Set<Categoria> categorias = new HashSet<>();
+	/*******************************************************/
+	
+	/*******************************************************/
+	// ITEM SERVICO
+	
+	@OneToMany(mappedBy = "id.item")
+	private Set<Servico> itensDeManutencao = new HashSet<>();
 	/*******************************************************/
 
 	public Item() {
@@ -80,6 +90,15 @@ public class Item implements Serializable {
 
 	public Set<Categoria> getCategories() {
 		return categorias;
+	}
+	
+	@JsonIgnore
+	public Set<Manutencao> getManutencoes() {
+		Set<Manutencao> set = new HashSet<>();
+		for (Servico x : itensDeManutencao) {
+			set.add(x.getManutencao());
+		}
+		return set;
 	}
 
 	@Override
