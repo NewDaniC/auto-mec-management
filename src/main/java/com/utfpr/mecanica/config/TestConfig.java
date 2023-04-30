@@ -31,7 +31,7 @@ import com.utfpr.mecanica.repositories.EnderecoRepository;
 import com.utfpr.mecanica.repositories.EstadoRepository;
 import com.utfpr.mecanica.repositories.ItemRepository;
 import com.utfpr.mecanica.repositories.ManutencaoRepository;
-import com.utfpr.mecanica.repositories.PagamentoRepository;
+//import com.utfpr.mecanica.repositories.PagamentoRepository;
 import com.utfpr.mecanica.repositories.PessoaRepository;
 import com.utfpr.mecanica.repositories.ServicoRepository;
 import com.utfpr.mecanica.repositories.UserRepository;
@@ -55,8 +55,8 @@ public class TestConfig implements CommandLineRunner {
 	@Autowired
 	private EstadoRepository estadoRepository;
 	
-	@Autowired
-	private PagamentoRepository pagamentoRepository;
+	//@Autowired
+	//private PagamentoRepository pagamentoRepository;
 	
 	@Autowired
 	private CategoriaRepository categoriaRepository;
@@ -97,9 +97,6 @@ public class TestConfig implements CommandLineRunner {
 		Endereco end4 = new Endereco(null, "Rua Manuas", "555", "Casa", "Alamedas", "12345678", cid4);
 		enderecoRepository.saveAll(Arrays.asList(end1, end2, end3, end4));
 		
-		Pagamento pag1 = new Pagamento (null, EstadoPagamento.QUITADO, TipoPagamento.DINHEIRO, null, Instant.now(), 0.0, 0);
-		pagamentoRepository.saveAll(Arrays.asList(pag1));
-		
 		Categoria cat1 = new Categoria(null, "Pneu");
 		Categoria cat2 = new Categoria(null, "Eletrica");
 		Categoria cat3 = new Categoria(null, "Lubrificante");
@@ -124,5 +121,8 @@ public class TestConfig implements CommandLineRunner {
 		Servico ser3 = new Servico(man2, item1, item1.getPrice(), 10, 10.0, "Troca de oleo - Sem problemas");
 		servicoRepository.saveAll(Arrays.asList(ser1, ser2, ser3));
 		
+		Pagamento pag1 = new Pagamento (null, EstadoPagamento.QUITADO, TipoPagamento.DINHEIRO, null, Instant.now(), 0.0, 0, man1);
+		man1.setPagamento(pag1);
+		manutencaoRepository.save(man1);
 	}
 }

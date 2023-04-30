@@ -6,11 +6,13 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -30,6 +32,13 @@ public class Manutencao implements Serializable {
 	
 	@OneToMany(mappedBy = "id.manutencao")
 	private Set<Servico> servico = new HashSet<>();
+	/*******************************************************/
+	
+	/*******************************************************/
+	// MANUTENCAO PAGAMENTO
+	
+	@OneToOne(mappedBy = "manutencao", cascade = CascadeType.ALL)
+	private Pagamento pagamento;
 	/*******************************************************/
 	
 	public Manutencao () {
@@ -69,6 +78,14 @@ public class Manutencao implements Serializable {
 		this.kilometragem = kilometragem;
 	}
 	
+	public Pagamento getPagamento() {
+		return pagamento;
+	}
+
+	public void setPagamento(Pagamento pagamento) {
+		this.pagamento = pagamento;
+	}
+
 	public Set<Servico> getServico(){
 		return servico;
 	}

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.utfpr.mecanica.entities.enums.EstadoPagamento;
 import com.utfpr.mecanica.entities.enums.TipoPagamento;
 
@@ -11,6 +12,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.MapsId;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -28,12 +31,20 @@ public class Pagamento implements Serializable {
 	private Double desconto;
 	private Integer numeroDeParcelas;
 	
+	/*******************************************************/
+	// PAGAMENTO MANUTENCAO
+	
+	@JsonIgnore
+	@OneToOne
+	@MapsId
+	private Manutencao manutencao;
+	/*******************************************************/
 	
 	public Pagamento() {
 	}
 	
 	public Pagamento(Long id, EstadoPagamento estadoPagamento, TipoPagamento tipoPagamento, 
-			Instant dataVencimentoBol, Instant dataPagametoBol, Double desconto, Integer numeroDeParcelas) {
+			Instant dataVencimentoBol, Instant dataPagametoBol, Double desconto, Integer numeroDeParcelas, Manutencao manutencao) {
 		super();
 		this.id = id;
 		setEstadoPagamento(estadoPagamento);
@@ -42,6 +53,7 @@ public class Pagamento implements Serializable {
 		this.dataPagametoBol = dataPagametoBol;
 		this.desconto = desconto;
 		this.numeroDeParcelas = numeroDeParcelas;
+		this.manutencao = manutencao;
 	}
 
 	public Long getId() {
@@ -102,6 +114,14 @@ public class Pagamento implements Serializable {
 
 	public void setNumeroDeParcelas(Integer numeroDeParcelas) {
 		this.numeroDeParcelas = numeroDeParcelas;
+	}
+
+	public Manutencao getManutencao() {
+		return manutencao;
+	}
+
+	public void setManutencao(Manutencao manutencao) {
+		this.manutencao = manutencao;
 	}
 
 	@Override
