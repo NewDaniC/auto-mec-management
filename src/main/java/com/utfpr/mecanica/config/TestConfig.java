@@ -77,10 +77,6 @@ public class TestConfig implements CommandLineRunner {
 		User user2 = new User(null, "Alex Green", "alex@gmail.com", "977777777", "123456");
 		userRepository.saveAll(Arrays.asList(user1, user2)); /* Salva esses objetos no BD */
 		
-		Pessoa pes1 = new Pessoa(null, "85858585", "Maria", Instant.parse("2019-06-20T00:00:00Z"), "maria@gmail.com", "45999999999");
-		Pessoa pes2 = new Pessoa(null, "54547474", "Rodrigo", Instant.parse("2002-07-21T00:00:00Z"), "rodrigo@gmail.com", "45988888888");
-		pessoaRepository.saveAll(Arrays.asList(pes1, pes2));
-		
 		Estado est1 = new Estado(null, "Paraná");
 		Estado est2 = new Estado(null, "Santa Catarina");
 		estadoRepository.saveAll(Arrays.asList(est1, est2));
@@ -96,6 +92,10 @@ public class TestConfig implements CommandLineRunner {
 		Endereco end3 = new Endereco(null, "Rua das Flores", "333", "Casa", "Jardins", "888888888", cid3);
 		Endereco end4 = new Endereco(null, "Rua Manuas", "555", "Casa", "Alamedas", "12345678", cid4);
 		enderecoRepository.saveAll(Arrays.asList(end1, end2, end3, end4));
+		
+		Pessoa pes1 = new Pessoa(null, "85858585", "Maria", Instant.parse("2019-06-20T00:00:00Z"), "maria@gmail.com", "45999999999", end1);
+		Pessoa pes2 = new Pessoa(null, "54547474", "Rodrigo", Instant.parse("2002-07-21T00:00:00Z"), "rodrigo@gmail.com", "45988888888", end2);
+		pessoaRepository.saveAll(Arrays.asList(pes1, pes2));
 		
 		Categoria cat1 = new Categoria(null, "Pneu");
 		Categoria cat2 = new Categoria(null, "Eletrica");

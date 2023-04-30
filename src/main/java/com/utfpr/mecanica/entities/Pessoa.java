@@ -11,6 +11,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -29,11 +31,19 @@ public class Pessoa implements Serializable {
 	private String email;
 	private String telefone;
 	
+	/*******************************************************/
+	// PESSOA ENDERECO
+	
+	@ManyToOne
+	@JoinColumn(name = "endereco_id")
+	private Endereco endereco;
+	/*******************************************************/
+	
 	public Pessoa () {
 		
 	}
 	
-	public Pessoa(Long id, String cpf, String nome, Instant nascimeto, String email, String telefone) {
+	public Pessoa(Long id, String cpf, String nome, Instant nascimeto, String email, String telefone, Endereco endereco) {
 		super();
 		this.id = id;
 		this.cpf = cpf;
@@ -41,6 +51,7 @@ public class Pessoa implements Serializable {
 		this.nascimeto = nascimeto;
 		this.email = email;
 		this.telefone = telefone;
+		this.setEndereco(endereco);
 	}
 	
 	public Long getId() {
@@ -79,7 +90,13 @@ public class Pessoa implements Serializable {
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
-
+	public Endereco getEndereco() {
+		return endereco;
+	}
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);

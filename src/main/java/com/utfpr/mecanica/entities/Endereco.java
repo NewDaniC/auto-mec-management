@@ -1,7 +1,11 @@
 package com.utfpr.mecanica.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,6 +13,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -31,6 +36,14 @@ public class Endereco implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "cidade_id") /* Nome da chave estrangeira que vai ser criada no banco */
 	private Cidade cidade; /* Associação com Cidade */
+	/*******************************************************/
+	
+	/*******************************************************/
+	// ENDERECO PESSOA
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "endereco")
+	private List<Pessoa> pessoa = new ArrayList<>();
 	/*******************************************************/
 	
 	public Endereco() {
@@ -104,6 +117,10 @@ public class Endereco implements Serializable {
 		this.cidade = cidade;
 	}
 	
+	public List<Pessoa> getPessoa() {
+		return pessoa;
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -119,7 +136,5 @@ public class Endereco implements Serializable {
 			return false;
 		Endereco other = (Endereco) obj;
 		return Objects.equals(id, other.id);
-	}
-
-	
+	}	
 }
