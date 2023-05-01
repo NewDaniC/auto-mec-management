@@ -2,8 +2,10 @@ package com.utfpr.mecanica.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
 //import java.util.Date;
 import java.util.Objects;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -13,6 +15,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -37,6 +40,13 @@ public class Pessoa implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "endereco_id")
 	private Endereco endereco;
+	/*******************************************************/
+	
+	/*******************************************************/
+	// PESSOA CLIENTE
+	
+	@OneToMany(mappedBy = "id.pessoa")
+	private Set<Cliente> clientes = new HashSet<>();
 	/*******************************************************/
 	
 	public Pessoa () {
@@ -95,6 +105,10 @@ public class Pessoa implements Serializable {
 	}
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
+	}
+	
+	public Set<Cliente> getClientes(){
+		return clientes;
 	}
 	
 	@Override

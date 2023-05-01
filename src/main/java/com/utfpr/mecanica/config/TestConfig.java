@@ -15,6 +15,7 @@ import org.springframework.context.annotation.Profile;
 
 import com.utfpr.mecanica.entities.Categoria;
 import com.utfpr.mecanica.entities.Cidade;
+import com.utfpr.mecanica.entities.Cliente;
 import com.utfpr.mecanica.entities.Endereco;
 import com.utfpr.mecanica.entities.Estado;
 import com.utfpr.mecanica.entities.Item;
@@ -23,18 +24,23 @@ import com.utfpr.mecanica.entities.Pagamento;
 import com.utfpr.mecanica.entities.Pessoa;
 import com.utfpr.mecanica.entities.Servico;
 import com.utfpr.mecanica.entities.User;
+import com.utfpr.mecanica.entities.Veiculo;
+import com.utfpr.mecanica.entities.enums.CorDoVeiculo;
 import com.utfpr.mecanica.entities.enums.EstadoPagamento;
 import com.utfpr.mecanica.entities.enums.TipoPagamento;
+import com.utfpr.mecanica.repositories.CargoRepository;
 import com.utfpr.mecanica.repositories.CategoriaRepository;
 import com.utfpr.mecanica.repositories.CidadeRepository;
+import com.utfpr.mecanica.repositories.ClienteRepository;
 import com.utfpr.mecanica.repositories.EnderecoRepository;
 import com.utfpr.mecanica.repositories.EstadoRepository;
+import com.utfpr.mecanica.repositories.FuncionarioRepository;
 import com.utfpr.mecanica.repositories.ItemRepository;
 import com.utfpr.mecanica.repositories.ManutencaoRepository;
-//import com.utfpr.mecanica.repositories.PagamentoRepository;
 import com.utfpr.mecanica.repositories.PessoaRepository;
 import com.utfpr.mecanica.repositories.ServicoRepository;
 import com.utfpr.mecanica.repositories.UserRepository;
+import com.utfpr.mecanica.repositories.VeiculoRepository;
 
 @Configuration
 @Profile("test")
@@ -55,9 +61,6 @@ public class TestConfig implements CommandLineRunner {
 	@Autowired
 	private EstadoRepository estadoRepository;
 	
-	//@Autowired
-	//private PagamentoRepository pagamentoRepository;
-	
 	@Autowired
 	private CategoriaRepository categoriaRepository;
 	
@@ -69,6 +72,18 @@ public class TestConfig implements CommandLineRunner {
 	
 	@Autowired
 	private ServicoRepository servicoRepository;
+	
+	@Autowired
+	private VeiculoRepository veiculoRepository;
+	
+	@Autowired
+	private CargoRepository cargoRepository;
+	
+	@Autowired
+	private ClienteRepository clienteRepository;
+	
+	@Autowired
+	private FuncionarioRepository funcionarioRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -95,7 +110,8 @@ public class TestConfig implements CommandLineRunner {
 		
 		Pessoa pes1 = new Pessoa(null, "85858585", "Maria", Instant.parse("2019-06-20T00:00:00Z"), "maria@gmail.com", "45999999999", end1);
 		Pessoa pes2 = new Pessoa(null, "54547474", "Rodrigo", Instant.parse("2002-07-21T00:00:00Z"), "rodrigo@gmail.com", "45988888888", end2);
-		pessoaRepository.saveAll(Arrays.asList(pes1, pes2));
+		Pessoa pes3 = new Pessoa(null, "12121212", "João", Instant.parse("2014-01-25T00:00:00Z"), "joao@gmail.com", "45911111111", end3);
+		pessoaRepository.saveAll(Arrays.asList(pes1, pes2, pes3));
 		
 		Categoria cat1 = new Categoria(null, "Pneu");
 		Categoria cat2 = new Categoria(null, "Eletrica");
@@ -124,5 +140,15 @@ public class TestConfig implements CommandLineRunner {
 		Pagamento pag1 = new Pagamento (null, EstadoPagamento.QUITADO, TipoPagamento.DINHEIRO, null, Instant.now(), 0.0, 10, man1);
 		man1.setPagamento(pag1);
 		manutencaoRepository.save(man1);
+		
+		Veiculo vei1 = new Veiculo (null, "abc-1234", 2020, CorDoVeiculo.AMARELO);
+		Veiculo vei2 = new Veiculo (null, "placa", 2020, CorDoVeiculo.AZUL);
+		veiculoRepository.saveAll(Arrays.asList(vei1, vei2));
+		
+		Cliente cli1 = new Cliente (pes1, vei1, 9);
+		Cliente cli2 = new Cliente (pes2, vei1, 10);
+		Cliente cli3 = new Cliente (pes3, vei2, 8);
+		clienteRepository.saveAll(Arrays.asList(cli1, cli2, cli3));
+		
 	}
 }

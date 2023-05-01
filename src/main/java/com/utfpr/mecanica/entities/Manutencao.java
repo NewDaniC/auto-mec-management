@@ -28,7 +28,7 @@ public class Manutencao implements Serializable {
 	private Integer kilometragem;
 	
 	/*******************************************************/
-	// MANUTENCAO ITEM
+	// MANUTENCAO SERVICO
 	
 	@OneToMany(mappedBy = "id.manutencao")
 	private Set<Servico> servico = new HashSet<>();

@@ -16,8 +16,8 @@ public enum TipoCargo {
 		return code;
 	}
 
-	public static TipoPagamento valueOf(int code) {
-		for (TipoPagamento value : TipoPagamento.values()) {
+	public static TipoCargo valueOf(int code) {
+		for (TipoCargo value : TipoCargo.values()) {
 			if (value.getCode() == code) {
 				return value;
 			}

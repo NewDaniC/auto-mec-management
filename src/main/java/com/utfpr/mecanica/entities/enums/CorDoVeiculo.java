@@ -18,8 +18,8 @@ public enum CorDoVeiculo {
 		return code;
 	}
 
-	public static TipoPagamento valueOf(int code) {
-		for (TipoPagamento value : TipoPagamento.values()) {
+	public static CorDoVeiculo valueOf(int code) {
+		for (CorDoVeiculo value : CorDoVeiculo.values()) {
 			if (value.getCode() == code) {
 				return value;
 			}
