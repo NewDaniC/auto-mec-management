@@ -1,14 +1,18 @@
 package com.utfpr.mecanica.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.utfpr.mecanica.entities.enums.CorDoVeiculo;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -22,6 +26,20 @@ public class Veiculo implements Serializable {
 	private String placa;
 	private Integer corDoVeiculo;
 	private Integer ano;
+	
+	/*******************************************************/
+	// VEICULO CLIENTE
+	
+	//ACHO Q NÃO PRECISA ESSA LIGAÇÃO
+	/*******************************************************/
+	
+	/*******************************************************/
+	// VEICULO MANUTENCAO
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "veiculo")
+	private List<Manutencao> manutencaoVeiculo = new ArrayList<>();
+	/*******************************************************/
 
 	public Veiculo() {
 

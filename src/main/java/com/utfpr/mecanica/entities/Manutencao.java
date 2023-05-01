@@ -11,6 +11,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -41,16 +43,25 @@ public class Manutencao implements Serializable {
 	private Pagamento pagamento;
 	/*******************************************************/
 	
+	/*******************************************************/
+	// MANUTENCAO VEICULO
+	
+	@ManyToOne
+	@JoinColumn(name = "veiculo_id")
+	private Veiculo veiculo;
+	/*******************************************************/
+	
 	public Manutencao () {
 		
 	}
 	
-	public Manutencao(Long id, Instant dataEntrada, Instant dataSaida, Integer kilometragem) {
+	public Manutencao(Long id, Instant dataEntrada, Instant dataSaida, Integer kilometragem, Veiculo veiculo) {
 		super();
 		this.id = id;
 		this.dataEntrada = dataEntrada;
 		this.dataSaida = dataSaida;
 		this.kilometragem = kilometragem;
+		this.veiculo = veiculo;
 	}
 	
 	public Long getId() {
@@ -98,19 +109,14 @@ public class Manutencao implements Serializable {
 		return sum;
 	}
 	
-	/*
-	public Double getTotal() {
-	    double sum = 0.0;
-	    for (Servico x : servico) {
-	        if (x.getDesconto() == 0.0) {
-	            sum += x.getSubTotal();
-	        } else {
-	            sum += x.getTotalDesconto();
-	        }
-	    }
-	    return sum;
+	public Veiculo getVeiculo() {
+		return veiculo;
 	}
-	*/
+
+	public void setVeiculo(Veiculo veiculo) {
+		this.veiculo = veiculo;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);

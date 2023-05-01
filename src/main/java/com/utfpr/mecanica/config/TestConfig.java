@@ -127,9 +127,18 @@ public class TestConfig implements CommandLineRunner {
 		item2.getCategories().add(cat2);
 		itemRepository.saveAll(Arrays.asList(item1, item2));
 		
-		Manutencao man1 = new Manutencao(null, Instant.parse("2023-02-15T00:00:00Z"), null, 1200000);
-		Manutencao man2 = new Manutencao(null, Instant.parse("2023-03-20T00:00:00Z"), null, 1234567);
-		Manutencao man3 = new Manutencao(null, Instant.parse("2023-04-01T00:00:00Z"), null, 85000);
+		Veiculo vei1 = new Veiculo (null, "abc-1234", 2020, CorDoVeiculo.AMARELO);
+		Veiculo vei2 = new Veiculo (null, "placa", 2020, CorDoVeiculo.AZUL);
+		veiculoRepository.saveAll(Arrays.asList(vei1, vei2));
+		
+		Cliente cli1 = new Cliente (pes1, vei1, 9);
+		Cliente cli2 = new Cliente (pes2, vei1, 10);
+		Cliente cli3 = new Cliente (pes3, vei2, 8);
+		clienteRepository.saveAll(Arrays.asList(cli1, cli2, cli3));
+		
+		Manutencao man1 = new Manutencao(null, Instant.parse("2023-02-15T00:00:00Z"), null, 1200000, vei1);
+		Manutencao man2 = new Manutencao(null, Instant.parse("2023-03-20T00:00:00Z"), null, 1234567, vei1);
+		Manutencao man3 = new Manutencao(null, Instant.parse("2023-04-01T00:00:00Z"), null, 85000, vei2);
 		manutencaoRepository.saveAll(Arrays.asList(man1, man2, man3));
 		
 		Servico ser1 = new Servico(man1, item1, item1.getPrice(), 5, 0.0, "Troca de oleo - Sem problemas");
@@ -141,14 +150,7 @@ public class TestConfig implements CommandLineRunner {
 		man1.setPagamento(pag1);
 		manutencaoRepository.save(man1);
 		
-		Veiculo vei1 = new Veiculo (null, "abc-1234", 2020, CorDoVeiculo.AMARELO);
-		Veiculo vei2 = new Veiculo (null, "placa", 2020, CorDoVeiculo.AZUL);
-		veiculoRepository.saveAll(Arrays.asList(vei1, vei2));
 		
-		Cliente cli1 = new Cliente (pes1, vei1, 9);
-		Cliente cli2 = new Cliente (pes2, vei1, 10);
-		Cliente cli3 = new Cliente (pes3, vei2, 8);
-		clienteRepository.saveAll(Arrays.asList(cli1, cli2, cli3));
 		
 	}
 }

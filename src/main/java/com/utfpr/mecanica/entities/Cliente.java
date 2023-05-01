@@ -20,6 +20,12 @@ public class Cliente implements Serializable {
 	
 	private Integer satisfacao;
 	
+	/*******************************************************/
+	// CLIENTE VEICULO
+	
+	// ACHO Q NÃO PRECISA ESSA LIGAÇÃO
+	/*******************************************************/
+	
 	public Cliente() {
 		
 	}
