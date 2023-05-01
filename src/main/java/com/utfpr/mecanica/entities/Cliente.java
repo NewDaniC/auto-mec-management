@@ -8,6 +8,8 @@ import com.utfpr.mecanica.entities.pk.ClientePK;
 
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -19,12 +21,6 @@ public class Cliente implements Serializable {
 	private ClientePK id = new ClientePK();
 	
 	private Integer satisfacao;
-	
-	/*******************************************************/
-	// CLIENTE VEICULO
-	
-	// ACHO Q NÃO PRECISA ESSA LIGAÇÃO
-	/*******************************************************/
 	
 	public Cliente() {
 		
@@ -46,6 +42,7 @@ public class Cliente implements Serializable {
 		id.setPessoa(pessoa);
 	}
 	
+	@JsonIgnore
 	public Veiculo getveiculo() {
 		return id.getVeiculo();
 	}
@@ -78,7 +75,4 @@ public class Cliente implements Serializable {
 		Cliente other = (Cliente) obj;
 		return Objects.equals(id, other.id);
 	}
-	
-	
-	
 }

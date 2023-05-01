@@ -2,8 +2,10 @@ package com.utfpr.mecanica.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.utfpr.mecanica.entities.enums.CorDoVeiculo;
@@ -28,9 +30,10 @@ public class Veiculo implements Serializable {
 	private Integer ano;
 	
 	/*******************************************************/
-	// VEICULO CLIENTE
+	// VEICULO PESSOA
 	
-	//ACHO Q NÃO PRECISA ESSA LIGAÇÃO
+	@OneToMany(mappedBy = "id.veiculo")
+	private Set<Cliente> veiculos = new HashSet<>();
 	/*******************************************************/
 	
 	/*******************************************************/
@@ -86,6 +89,10 @@ public class Veiculo implements Serializable {
 			this.corDoVeiculo = corDoVeiculo.getCode();
 		}
 	}
+	
+	public List<Manutencao> getManutencaoVeiculo() {
+		return manutencaoVeiculo;
+	}
 
 	@Override
 	public int hashCode() {
@@ -103,4 +110,13 @@ public class Veiculo implements Serializable {
 		Veiculo other = (Veiculo) obj;
 		return Objects.equals(id, other.id);
 	}
+
+	public Set<Pessoa> getPessoasVeiculo() {
+		Set<Pessoa> set = new HashSet<>();
+		for (Cliente x : veiculos) {
+			set.add(x.getPessoa());
+		}
+		return set;
+	}
+		
 }
