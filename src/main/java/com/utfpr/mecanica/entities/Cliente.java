@@ -8,8 +8,6 @@ import com.utfpr.mecanica.entities.pk.ClientePK;
 
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -43,7 +41,7 @@ public class Cliente implements Serializable {
 	}
 	
 	@JsonIgnore
-	public Veiculo getveiculo() {
+	public Veiculo getVeiculo() {
 		return id.getVeiculo();
 	}
 	

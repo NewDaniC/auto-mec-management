@@ -22,7 +22,7 @@ import jakarta.persistence.Table;
 @Table(name = "tb_pessoa")
 public class Pessoa implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -33,27 +33,36 @@ public class Pessoa implements Serializable {
 	private Instant nascimeto;
 	private String email;
 	private String telefone;
-	
+
 	/*******************************************************/
 	// PESSOA ENDERECO
-	
+
 	@ManyToOne
 	@JoinColumn(name = "endereco_id")
 	private Endereco endereco;
 	/*******************************************************/
-	
+
 	/*******************************************************/
 	// PESSOA CLIENTE
-	
+
 	@OneToMany(mappedBy = "id.pessoa")
 	private Set<Cliente> clientes = new HashSet<>();
 	/*******************************************************/
-	
-	public Pessoa () {
-		
+
+	/*******************************************************/
+	// PESSOA FUNCIONARIO
+
+	@OneToMany(mappedBy = "id.pessoa")
+	private Set<Funcionario> funcionarios = new HashSet<>();
+
+	/*******************************************************/
+
+	public Pessoa() {
+
 	}
-	
-	public Pessoa(Long id, String cpf, String nome, Instant nascimeto, String email, String telefone, Endereco endereco) {
+
+	public Pessoa(Long id, String cpf, String nome, Instant nascimeto, String email, String telefone,
+			Endereco endereco) {
 		super();
 		this.id = id;
 		this.cpf = cpf;
@@ -63,54 +72,71 @@ public class Pessoa implements Serializable {
 		this.telefone = telefone;
 		this.setEndereco(endereco);
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public String getCpf() {
 		return cpf;
 	}
+
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
+
 	public String getNome() {
 		return nome;
 	}
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
 	public Instant getNascimeto() {
 		return nascimeto;
 	}
+
 	public void setNascimeto(Instant nascimeto) {
 		this.nascimeto = nascimeto;
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	public String getTelefone() {
 		return telefone;
 	}
+
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
+
 	public Endereco getEndereco() {
 		return endereco;
 	}
+
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
-	
-	public Set<Cliente> getClientes(){
+
+	public Set<Cliente> getClientes() {
 		return clientes;
 	}
-	
+
+	public Set<Funcionario> getFuncionario() {
+		return funcionarios;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);

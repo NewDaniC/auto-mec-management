@@ -13,11 +13,13 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
+import com.utfpr.mecanica.entities.Cargo;
 import com.utfpr.mecanica.entities.Categoria;
 import com.utfpr.mecanica.entities.Cidade;
 import com.utfpr.mecanica.entities.Cliente;
 import com.utfpr.mecanica.entities.Endereco;
 import com.utfpr.mecanica.entities.Estado;
+import com.utfpr.mecanica.entities.Funcionario;
 import com.utfpr.mecanica.entities.Item;
 import com.utfpr.mecanica.entities.Manutencao;
 import com.utfpr.mecanica.entities.Pagamento;
@@ -27,6 +29,7 @@ import com.utfpr.mecanica.entities.User;
 import com.utfpr.mecanica.entities.Veiculo;
 import com.utfpr.mecanica.entities.enums.CorDoVeiculo;
 import com.utfpr.mecanica.entities.enums.EstadoPagamento;
+import com.utfpr.mecanica.entities.enums.TipoCargo;
 import com.utfpr.mecanica.entities.enums.TipoPagamento;
 import com.utfpr.mecanica.repositories.CargoRepository;
 import com.utfpr.mecanica.repositories.CategoriaRepository;
@@ -111,7 +114,14 @@ public class TestConfig implements CommandLineRunner {
 		Pessoa pes1 = new Pessoa(null, "85858585", "Maria", Instant.parse("2019-06-20T00:00:00Z"), "maria@gmail.com", "45999999999", end1);
 		Pessoa pes2 = new Pessoa(null, "54547474", "Rodrigo", Instant.parse("2002-07-21T00:00:00Z"), "rodrigo@gmail.com", "45988888888", end2);
 		Pessoa pes3 = new Pessoa(null, "12121212", "João", Instant.parse("2014-01-25T00:00:00Z"), "joao@gmail.com", "45911111111", end3);
-		pessoaRepository.saveAll(Arrays.asList(pes1, pes2, pes3));
+		Pessoa pes4 = new Pessoa(null, "99999999", "Patricia", Instant.parse("2014-01-25T00:00:00Z"), "patricia@gmail.com", "45977778888", end4);
+		pessoaRepository.saveAll(Arrays.asList(pes1, pes2, pes3, pes4));
+		
+		Cargo car1 = new Cargo(null, 1200.00, "Mecanico", TipoCargo.MECANICO);
+		cargoRepository.saveAll(Arrays.asList(car1));
+		
+		Funcionario fun1 = new Funcionario(pes4, car1, 1300.00, Instant.parse("2019-06-20T00:00:00Z"), null);
+		funcionarioRepository.saveAll(Arrays.asList(fun1));
 		
 		Categoria cat1 = new Categoria(null, "Pneu");
 		Categoria cat2 = new Categoria(null, "Eletrica");
@@ -148,9 +158,6 @@ public class TestConfig implements CommandLineRunner {
 		
 		Pagamento pag1 = new Pagamento (null, EstadoPagamento.QUITADO, TipoPagamento.DINHEIRO, null, Instant.now(), 0.0, 10, man1);
 		man1.setPagamento(pag1);
-		manutencaoRepository.save(man1);
-		
-		
-		
+		manutencaoRepository.save(man1);		
 	}
 }
