@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -46,14 +47,16 @@ public class MainController {
         return "/listaItem";
 	}
 	
-	
-//	@GetMapping("listaItem")
-//	public ModelAndView listaItem() {
-//		ModelAndView mv = new ModelAndView("list");
-//		 List<Item> items = itemRepository.findAll();
-//		 mv.addObject("items", items);
-//		return mv;
-//	}
+	// https://www.youtube.com/watch?v=u8a25mQcMOI - 1:38:00
+	@GetMapping("/edit/{id}")
+	public ModelAndView edit(@PathVariable("id") Long id) {
+	    ModelAndView mv = new ModelAndView("createItem");
+
+	    List<Item> items = itemRepository.findAll();
+	    Item item = items.stream().filter(i -> i.getId().equals(id)).findFirst().get();
+	    mv.addObject("item", item);
+	    return mv;
+	}
 	
 	/* ********************************** */
 	/* Metodos teste */

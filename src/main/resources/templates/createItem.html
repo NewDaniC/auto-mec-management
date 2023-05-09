@@ -11,26 +11,26 @@
 <body>
 	<h1>Pagina item</h1>
 	
-<form method="POST" action="/createItem">
+<form method="POST" action="/createItem" th:object="${item}">
     
     <div class="mb-3">
       <label class="form-label">ID do Item</label>
-      <input type="text" class="form-control" name="id">
+      <input type="text" class="form-control" name="id" value="${item.id}">
     </div>
     
     <div class="mb-3">
       <label class="form-label">Nome do Item</label>
-      <input type="text" class="form-control" name="nome">
+      <input type="text" class="form-control" name="nome" value="${item.nome}">
     </div>
     
     <div class="mb-3">
       <label class="form-label">Descrição do Item</label>
-      <input type="text" class="form-control" name="descricao">
+      <input type="text" class="form-control" name="descricao" value="${item.descricao}">
     </div>
     
     <div class="mb-3">
       <label class="form-label">Preço do Item</label>
-      <input type="text" class="form-control" name="preco">
+      <input type="text" class="form-control" name="preco" value="${item.preco}">
     </div>
 
     <button type="submit" class="btn btn-primary">Cadastrar ITEM</button>

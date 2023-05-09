@@ -18,6 +18,7 @@
 	      <th scope="col">Nome do Item</th>
 	      <th scope="col">Descrição do Item</th>
 	      <th scope="col">Preço do Item</th>
+	      <th scope="col">#</th>
 	    </tr>
 	  </thead>
 	  <tbody>
@@ -26,11 +27,14 @@
             <td th:text="${item.nome}"></td>
             <td th:text="${item.descricao}"></td>
             <td th:text="${item.preco}"></td>
+            <td>
+				<a th:href="@{'/edit/'+${item.id}}" >Editar</a>
+			</td>
         </tr>
 	  </tbody>
 	</table>
 
 <br><br><br><br>
-	<a href="/createItem">index</a>
+	<a href="/createItem">Cadastro item</a>
 </body>
 </html>
