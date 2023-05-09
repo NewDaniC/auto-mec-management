@@ -22,11 +22,11 @@ public class Item implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String name;
-	private String description;
-	private Double price;
+	private String nome;
+	private String descricao;
+	private Double preco;
 
 	/*******************************************************/
 	// ITEM CATEGORIA
@@ -48,12 +48,12 @@ public class Item implements Serializable {
 	public Item() {
 	}
 
-	public Item(Long id, String name, String description, Double price) {
+	public Item(Long id, String nome, String descricao, Double preco) {
 		super();
 		this.id = id;
-		this.name = name;
-		this.description = description;
-		this.price = price;
+		this.nome = nome;
+		this.descricao = descricao;
+		this.preco = preco;
 	}
 
 	public Long getId() {
@@ -64,31 +64,31 @@ public class Item implements Serializable {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getDescricao() {
+		return descricao;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
-	public Double getPrice() {
-		return price;
+	public Double getPreco() {
+		return preco;
 	}
 
-	public void setPrice(Double price) {
-		this.price = price;
+	public void setPreco(Double preco) {
+		this.preco = preco;
 	}
 
-	public Set<Categoria> getCategories() {
+	public Set<Categoria> getCategoria() {
 		return categorias;
 	}
 	

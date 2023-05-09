@@ -128,13 +128,13 @@ public class TestConfig implements CommandLineRunner {
 		Categoria cat3 = new Categoria(null, "Lubrificante");
 		categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
 		
-		Item item1 = new Item (null, "Oleo 20w15", "Oleo de Motor - Lubrax", 10.0);
-		Item item2 = new Item (null, "Fusivel 10 A", "Fusivel - Fusitec", 2.0);
+		Item item1 = new Item (1L, "Oleo 20w15", "Oleo de Motor - Lubrax", 10.0);
+		Item item2 = new Item (2L, "Fusivel 10 A", "Fusivel - Fusitec", 2.0);
 		itemRepository.saveAll(Arrays.asList(item1, item2));
 		
 		// Preenchendo tabela tb_item_categoria
-		item1.getCategories().add(cat3);
-		item2.getCategories().add(cat2);
+		item1.getCategoria().add(cat3);
+		item2.getCategoria().add(cat2);
 		itemRepository.saveAll(Arrays.asList(item1, item2));
 		
 		Veiculo vei1 = new Veiculo (null, "abc-1234", 2020, CorDoVeiculo.AMARELO);
@@ -151,9 +151,9 @@ public class TestConfig implements CommandLineRunner {
 		Manutencao man3 = new Manutencao(null, Instant.parse("2023-04-01T00:00:00Z"), null, 85000, vei2);
 		manutencaoRepository.saveAll(Arrays.asList(man1, man2, man3));
 		
-		Servico ser1 = new Servico(man1, item1, item1.getPrice(), 5, 0.0, "Troca de oleo - Sem problemas");
-		Servico ser2 = new Servico(man1, item2, item2.getPrice(), 1, 10.0, "Troca de fusivel - Sem problemas");
-		Servico ser3 = new Servico(man2, item1, item1.getPrice(), 10, 0.0, "Troca de oleo - Sem problemas");
+		Servico ser1 = new Servico(man1, item1, item1.getPreco(), 5, 0.0, "Troca de oleo - Sem problemas");
+		Servico ser2 = new Servico(man1, item2, item2.getPreco(), 1, 10.0, "Troca de fusivel - Sem problemas");
+		Servico ser3 = new Servico(man2, item1, item1.getPreco(), 10, 0.0, "Troca de oleo - Sem problemas");
 		servicoRepository.saveAll(Arrays.asList(ser1, ser2, ser3));
 		
 		Pagamento pag1 = new Pagamento (null, EstadoPagamento.QUITADO, TipoPagamento.DINHEIRO, null, Instant.now(), 0.0, 10, man1);
