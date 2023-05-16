@@ -128,8 +128,8 @@ public class TestConfig implements CommandLineRunner {
 		Categoria cat3 = new Categoria(null, "Lubrificante");
 		categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
 		
-		Item item1 = new Item (1L, "Oleo 20w15", "Oleo de Motor - Lubrax", 10.0);
-		Item item2 = new Item (2L, "Fusivel 10 A", "Fusivel - Fusitec", 2.0);
+		Item item1 = new Item (null, "Oleo 20w15", "Oleo de Motor - Lubrax", 10.0);
+		Item item2 = new Item (null, "Fusivel 10 A", "Fusivel - Fusitec", 2.0);
 		itemRepository.saveAll(Arrays.asList(item1, item2));
 		
 		// Preenchendo tabela tb_item_categoria

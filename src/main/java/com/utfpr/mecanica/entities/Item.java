@@ -22,7 +22,7 @@ public class Item implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	//@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
 	private String descricao;
@@ -125,4 +125,11 @@ public class Item implements Serializable {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Item [id=" + id + ", nome=" + nome + ", categorias=" + categorias + "]";
+	}
+	
+	
 }

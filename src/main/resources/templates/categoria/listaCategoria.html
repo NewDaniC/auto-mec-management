@@ -15,26 +15,30 @@
 	  <thead>
 	    <tr>
 	      <th scope="col">ID</th>
-	      <th scope="col">Nome do Item</th>
-	      <th scope="col">Descrição do Item</th>
-	      <th scope="col">Preço do Item</th>
+	      <th scope="col">Nome da Categoria</th>
+	      <th scope="col">#</th>
 	      <th scope="col">#</th>
 	    </tr>
 	  </thead>
 	  <tbody>
-	    <tr th:each="item : ${items}">
-            <td th:text="${item.id}"></td>
-            <td th:text="${item.nome}"></td>
-            <td th:text="${item.descricao}"></td>
-            <td th:text="${item.preco}"></td>
+	    <tr th:each="categoria : ${categorias}">
+            <td th:text="${categoria.id}"></td>
+            <td th:text="${categoria.name}"></td>
             <td>
-				<a th:href="@{'/edit/'+${item.id}}" >Editar</a>
+				<a th:href="@{'/categoria/editCategoria/'+${categoria.id}}" >Editar</a>
+			</td>
+			<td>
+				<a th:href="@{'/categoria/excluirCategoria/'+${categoria.id}}" >Excluir</a>
 			</td>
         </tr>
 	  </tbody>
 	</table>
 
-<br><br><br><br>
-	<a href="/createItem">Cadastro item</a>
+<br>
+
+<form method="GET" action="/categoria/createCategoria">
+    <button type="submit" class="btn btn-primary">Cadastro Categoria</button>
+</form>
+
 </body>
 </html>
