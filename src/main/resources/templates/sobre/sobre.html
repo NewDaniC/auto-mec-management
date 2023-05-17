@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en" data-bs-theme="auto" xmlns:th="http://www.thymeleaf.org">
+  <head><script src="../assets/js/color-modes.js"></script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.111.3">
+    <title>Sidebars · Bootstrap v5.3</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sidebars/">
+
+<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+	body {
+	  font-family: Arial, Helvetica, sans-serif;
+	  margin: 0;
+	}
+	
+	html {
+	  box-sizing: border-box;
+	}
+	
+	*, *:before, *:after {
+	  box-sizing: inherit;
+	}
+	
+	.column {
+	  float: left;
+	  width: 33.3%;
+	  margin-bottom: 16px;
+	  padding: 0 8px;
+	}
+	
+	.card {
+	  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	  margin: 8px;
+	}
+	
+	.about-section {
+	  padding: 50px;
+	  text-align: center;
+	  background-color: #474e5d;
+	  color: white;
+	}
+	
+	.container {
+	  padding: 0 16px;
+	}
+	
+	.container::after, .row::after {
+	  content: "";
+	  clear: both;
+	  display: table;
+	}
+	
+	.title {
+	  color: grey;
+	}
+	
+	.button {
+	  border: none;
+	  outline: 0;
+	  display: inline-block;
+	  padding: 8px;
+	  color: white;
+	  background-color: #000;
+	  text-align: center;
+	  cursor: pointer;
+	  width: 100%;
+	}
+	
+	.button:hover {
+	  background-color: #555;
+	}
+	
+	@media screen and (max-width: 650px) {
+	  .column {
+	    width: 100%;
+	    display: block;
+	  }
+	}
+</style>
+
+    <!-- Custom styles for this template -->
+    <link href="css/sidebars.css" rel="stylesheet">
+  </head>
+  <body style="display: flex;">
+
+  <header th:replace="~{fragmentos/sideBar}"></header>
+
+  <div class="b-example-divider b-example-vr"></div>
+  
+  <div>
+  <div class="about-section">
+  <h1>Sobre "Auto-mec-management"</h1>
+  <p><br>"Auto-mec-management" é um sistema Java que utiliza Hibernate e Maven para oferecer gerenciamento completo de mecânica automotiva. 
+	  Projeto final da disciplina de POO II, tem como objetivo melhorar a eficiência e a qualidade do gerenciamento de oficinas, 
+	  incluindo gestão de ordens de serviço, controle de estoque e registro de clientes.
+  </p>
+  <p>O "Auto-mec-management" proporciona uma interface intuitiva e amigável, permitindo que os usuários realizem tarefas de forma ágil e eficiente. 
+	  Com o sistema, é possível cadastrar e gerenciar clientes, veículos, serviços e peças utilizadas nas manutenções. 
+	  Além disso, o sistema possui funcionalidades para agendar e acompanhar as ordens de serviço, controlar o estoque de peças, gerar relatórios financeiros 
+	  e histórico de manutenções. Com esses recursos, busca-se otimizar os processos internos da oficina, promovendo um atendimento mais eficaz 
+	  e uma melhor organização das atividades. O "Auto-mec-management" visa aprimorar a gestão da mecânica automotiva, proporcionando maior controle, 
+	  eficiência e qualidade nos serviços prestados.
+  </p>
+</div>
+
+<h2 style="text-align:center">Our Team</h2>
+<div class="row">
+  <div class="column">
+    <div class="card">
+      <div class="d-flex justify-content-center">
+        <img src="https://github.com/mdo.png" alt="Jane" style="width:30%">
+      </div>
+      <div class="container">
+        <h2>Jane Doe</h2>
+        <p class="title">CEO & Founder</p>
+        <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+        <p>jane@example.com</p>
+        <p><button class="button">Contact</button></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="card">
+      <div class="d-flex justify-content-center">
+        <img src="https://github.com/mdo.png" alt="Mike" style="width:30%">
+      </div>
+      <div class="container">
+        <h2>Mike Ross</h2>
+        <p class="title">Art Director</p>
+        <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+        <p>mike@example.com</p>
+        <p><button class="button">Contact</button></p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="column">
+    <div class="card">
+      <div class="d-flex justify-content-center">
+        <img src="https://github.com/mdo.png" alt="John" style="width:30%">
+      </div>
+      <div class="container">
+        <h2>John Doe</h2>
+        <p class="title">Designer</p>
+        <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+        <p>john@example.com</p>
+        <p><button class="button">Contact</button></p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</main>
+
+
+    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+
+      <script src="js/sidebars.js"></script>
+  </body>
+</html>
+<!--https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_about_page-->
