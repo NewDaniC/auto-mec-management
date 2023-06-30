@@ -109,13 +109,3 @@ public class ItemController {
 		return "/item/itensPorCategoria";
 	}
 }
-
-//	/* ********************************** */
-//	/* Metodos teste */
-//	
-//	@GetMapping("/login")
-//	public String login() {
-//		return "login";
-//	}
-//	/* ********************************** */
-

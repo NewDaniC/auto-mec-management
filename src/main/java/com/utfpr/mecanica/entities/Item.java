@@ -6,6 +6,7 @@ import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -31,7 +32,7 @@ public class Item implements Serializable {
 	/*******************************************************/
 	// ITEM CATEGORIA
 	
-	@ManyToMany
+	@ManyToMany(cascade = CascadeType.REMOVE)
 	@JoinTable(name = "tb_item_categoria",
 		joinColumns = @JoinColumn(name = "produto_id"),
 		inverseJoinColumns = @JoinColumn(name = "categoria_id"))
@@ -41,7 +42,7 @@ public class Item implements Serializable {
 	/*******************************************************/
 	// ITEM SERVICO
 	
-	@OneToMany(mappedBy = "id.item")
+	@OneToMany(mappedBy = "id.item", cascade = CascadeType.ALL)
 	private Set<Servico> itensDeManutencao = new HashSet<>();
 	/*******************************************************/
 

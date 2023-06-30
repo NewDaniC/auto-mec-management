@@ -10,6 +10,7 @@ import java.util.Set;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.utfpr.mecanica.entities.enums.CorDoVeiculo;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -26,13 +27,13 @@ public class Veiculo implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String placa;
-	private Integer corDoVeiculo;
+	private CorDoVeiculo corDoVeiculo;
 	private Integer ano;
 	
 	/*******************************************************/
 	// VEICULO PESSOA
 	
-	@OneToMany(mappedBy = "id.veiculo")
+	@OneToMany(mappedBy = "id.veiculo", cascade = CascadeType.ALL)
 	private Set<Cliente> veiculos = new HashSet<>();
 	/*******************************************************/
 	
@@ -40,7 +41,7 @@ public class Veiculo implements Serializable {
 	// VEICULO MANUTENCAO
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "veiculo")
+	@OneToMany(mappedBy = "veiculo", cascade = CascadeType.ALL)
 	private List<Manutencao> manutencaoVeiculo = new ArrayList<>();
 	/*******************************************************/
 
@@ -48,13 +49,21 @@ public class Veiculo implements Serializable {
 
 	}
 	
-	public Veiculo(Long id, String placa, Integer ano, CorDoVeiculo corVeiculo) {
+	public Veiculo(Long id, String placa, CorDoVeiculo corDoVeiculo, Integer ano) {
 		super();
 		this.id = id;
 		this.placa = placa;
+		this.corDoVeiculo = corDoVeiculo;
 		this.ano = ano;
-		setCorDoVeiculo(corVeiculo);
 	}
+	
+//	public Veiculo(Long id, String placa, Integer ano, CorDoVeiculo corDoVeiculo) {
+//		super();
+//		this.id = id;
+//		this.placa = placa;
+//		this.ano = ano;
+//		this.corDoVeiculo = corDoVeiculo;
+//	}
 	
 	public Long getId() {
 		return id;
@@ -81,14 +90,22 @@ public class Veiculo implements Serializable {
 	}
 	
 	public CorDoVeiculo getCorDoVeiculo() {
-		return CorDoVeiculo.valueOf(corDoVeiculo);
+		return corDoVeiculo;
 	}
 
 	public void setCorDoVeiculo(CorDoVeiculo corDoVeiculo) {
-		if (corDoVeiculo != null) {
-			this.corDoVeiculo = corDoVeiculo.getCode();
-		}
+		this.corDoVeiculo = corDoVeiculo;
 	}
+	
+//	public CorDoVeiculo getCorDoVeiculo() {
+//		return CorDoVeiculo.valueOf(corDoVeiculo);
+//	}
+//
+//	public void setCorDoVeiculo(CorDoVeiculo corDoVeiculo) {
+//		if (corDoVeiculo != null) {
+//			this.corDoVeiculo = corDoVeiculo.getCode();
+//		}
+//	}
 	
 	public List<Manutencao> getManutencaoVeiculo() {
 		return manutencaoVeiculo;

@@ -1,18 +1,15 @@
 <!doctype html>
 <html lang="en" data-bs-theme="auto" xmlns:th="http://www.thymeleaf.org">
-  <head><script src="../assets/js/color-modes.js"></script>
-
+  <head>
+    <script src="../assets/js/color-modes.js"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.111.3">
     <title>Sidebars · Bootstrap v5.3</title>
-
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sidebars/">
-
-<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -21,13 +18,11 @@
         -moz-user-select: none;
         user-select: none;
       }
-
       @media (min-width: 768px) {
         .bd-placeholder-img-lg {
           font-size: 3.5rem;
         }
       }
-
       .b-example-divider {
         width: 100%;
         height: 3rem;
@@ -36,25 +31,21 @@
         border-width: 1px 0;
         box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
       }
-
       .b-example-vr {
         flex-shrink: 0;
         width: 1.5rem;
         height: 100vh;
       }
-
       .bi {
         vertical-align: -.125em;
         fill: currentColor;
       }
-
       .nav-scroller {
         position: relative;
         z-index: 2;
         height: 2.75rem;
         overflow-y: hidden;
       }
-
       .nav-scroller .nav {
         display: flex;
         flex-wrap: nowrap;
@@ -65,11 +56,9 @@
         white-space: nowrap;
         -webkit-overflow-scrolling: touch;
       }
-
       .btn-bd-primary {
         --bd-violet-bg: #712cf9;
         --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
-
         --bs-btn-font-weight: 600;
         --bs-btn-color: var(--bs-white);
         --bs-btn-bg: var(--bd-violet-bg);
@@ -84,58 +73,50 @@
       }
       .bd-mode-toggle {
         z-index: 1500;
-      }      
+      }
     </style>
-
     <!-- Custom styles for this template -->
     <link href="css/sidebars.css" rel="stylesheet">
   </head>
   <body style="display: flex;">
-	
-	<header th:replace="~{fragmentos/sideBar}"></header>
-	
-	<div class="b-example-divider b-example-vr"></div>
-	
-  <div class='ConteudoPR' style="padding: 40px 90px;">
-	  <form method="POST" action="/item/createItem" th:object="${item}">
-	    <input type="hidden" th:value="${item.id}" name="id" />
-	    
-	    <div class="mb-3">
-	      <label class="form-label">Nome do Item</label>
-	      <input type="text" class="form-control" name="nome" th:value="${item.nome}">
-	    </div>
-	    
-	    <div class="mb-3">
-	      <label class="form-label">Descrição do Item</label>
-	      <input type="text" class="form-control" name="descricao" th:value="${item.descricao}">
-	    </div>
-	    
-	    <div class="mb-3">
-	      <label class="form-label">Preço do Item</label>
-	      <input type="text" class="form-control" name="preco" th:value="${item.preco}">
-	    </div>
-	    
-	    <div class="mb-3">
-	    	<label class="form-label">Categoria do Item</label>
-	    	<select name="categoria_id" class="form-select">
-	       		<option value="">Selecione uma categoria</option>
-	        	<option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
-	   		</select>
-		</div>
-	
-	    <button type="submit" class="btn btn-primary">Cadastrar ITEM</button>
-	</form>
-	
-	<br>
-	<form method="GET" action="/item/listaItem">
-	    <button type="submit" class="btn btn-primary">Lista ITEM</button>
-	</form>
-</div>
-</main>
-
-
+   
+    <header th:replace="~{fragmentos/sideBar}"></header>
+    
+    <div class="b-example-divider b-example-vr"></div>
+   
+    <div style="padding: 30px 30px;">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Placa</th>
+            <th scope="col">Cor do Veículo</th>
+            <th scope="col">ano</th>
+            <th scope="col">#</th>
+            <th scope="col">#</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="veiculo : ${veiculos}">
+            <td th:text="${veiculo.id}"></td>
+            <td th:text="${veiculo.placa}"></td>
+            <td th:text="${veiculo.corDoVeiculo}"></td>
+            <td th:text="${veiculo.ano}"></td>
+            <td>
+              <a th:href="@{'/veiculo/editVeiculo/' + ${veiculo.id}}">Editar</a>
+            </td>
+            <td>
+              <a th:href="@{'/veiculo/excluirVeiculo/' + ${veiculo.id}}">Excluir</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <form method="GET" action="/veiculo/createVeiculo">
+        <button type="submit" class="btn btn-primary">Cadastrar Veículo</button>
+      </form>
+    </div>
     <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
-
-      <script src="js/sidebars.js"></script>
+    <script src="js/sidebars.js"></script>
   </body>
 </html>

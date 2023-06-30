@@ -84,52 +84,59 @@
       }
       .bd-mode-toggle {
         z-index: 1500;
-      }      
+      }
     </style>
 
     <!-- Custom styles for this template -->
     <link href="css/sidebars.css" rel="stylesheet">
   </head>
   <body style="display: flex;">
-	
-	<header th:replace="~{fragmentos/sideBar}"></header>
-	
-	<div class="b-example-divider b-example-vr"></div>
-	
-  <div class='ConteudoPR' style="padding: 40px 90px;">
-	  <form method="POST" action="/item/createItem" th:object="${item}">
-	    <input type="hidden" th:value="${item.id}" name="id" />
-	    
-	    <div class="mb-3">
-	      <label class="form-label">Nome do Item</label>
-	      <input type="text" class="form-control" name="nome" th:value="${item.nome}">
-	    </div>
-	    
-	    <div class="mb-3">
-	      <label class="form-label">Descrição do Item</label>
-	      <input type="text" class="form-control" name="descricao" th:value="${item.descricao}">
-	    </div>
-	    
-	    <div class="mb-3">
-	      <label class="form-label">Preço do Item</label>
-	      <input type="text" class="form-control" name="preco" th:value="${item.preco}">
-	    </div>
-	    
-	    <div class="mb-3">
-	    	<label class="form-label">Categoria do Item</label>
-	    	<select name="categoria_id" class="form-select">
-	       		<option value="">Selecione uma categoria</option>
-	        	<option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
-	   		</select>
-		</div>
-	
-	    <button type="submit" class="btn btn-primary">Cadastrar ITEM</button>
-	</form>
-	
-	<br>
-	<form method="GET" action="/item/listaItem">
-	    <button type="submit" class="btn btn-primary">Lista ITEM</button>
-	</form>
+
+  <header th:replace="~{fragmentos/sideBar}"></header>
+
+  <div class="b-example-divider b-example-vr"></div>
+  
+  <div style="padding: 30px 30px;">
+  <table class="table">
+	  <thead>
+	    <tr>
+<!--	      <th scope="col">ID MANUTENCAO</th>-->
+<!--	      <th scope="col">ID ITEM</th>-->
+	      <th scope="col">Preço do Item</th>
+	      <th scope="col">QNT do Item</th>
+	      <th scope="col">Desconto</th>
+	      <th scope="col">Descrição</th>
+	      <th scope="col">#</th>
+	      <th scope="col">#</th>
+	      
+	      <th scope="col">ID MANUTENCAO</th>
+	      <th scope="col">ID ITEM</th>
+	      
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr th:each="servico : ${servicos}">
+<!--			<td th:text="${{item.categoria}}"></td>-->
+<!--            <td th:text="${{item.categoria}}"></td>-->
+            <td th:text="${servico.preco}"></td>
+            <td th:text="${servico.quantidade}"></td>
+            <td th:text="${servico.desconto}"></td>
+            <td th:text="${servico.DescricaoServico}"></td>
+            <td>
+				<a th:href="@{/servico/listaServico}" >Editar</a>
+			</td>
+			<td>
+				<a th:href="@{/servico/listaServico}" >Excluir</a>
+			</td>
+        </tr>
+	  </tbody>
+	</table>
+
+<br>
+
+<form method="GET" action="/servico/createServico">
+    <button type="submit" class="btn btn-primary">Cadastro Serviço</button>
+</form>
 </div>
 </main>
 

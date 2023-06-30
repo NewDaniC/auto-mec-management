@@ -1,7 +1,7 @@
 package com.utfpr.mecanica.entities;
 
 import java.io.Serializable;
-import java.time.Instant;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -25,8 +25,8 @@ public class Manutencao implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private Instant dataEntrada;
-	private Instant dataSaida;
+	private Date dataEntrada;
+	private Date dataSaida;
 	private Integer kilometragem;
 	
 	/*******************************************************/
@@ -55,7 +55,7 @@ public class Manutencao implements Serializable {
 		
 	}
 	
-	public Manutencao(Long id, Instant dataEntrada, Instant dataSaida, Integer kilometragem, Veiculo veiculo) {
+	public Manutencao(Long id, Date dataEntrada, Date dataSaida, Integer kilometragem, Veiculo veiculo) {
 		super();
 		this.id = id;
 		this.dataEntrada = dataEntrada;
@@ -70,16 +70,16 @@ public class Manutencao implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Instant getDataEntrada() {
+	public Date getDataEntrada() {
 		return dataEntrada;
 	}
-	public void setDataEntrada(Instant dataEntrada) {
+	public void setDataEntrada(Date dataEntrada) {
 		this.dataEntrada = dataEntrada;
 	}
-	public Instant getDataSaida() {
+	public Date getDataSaida() {
 		return dataSaida;
 	}
-	public void setDataSaida(Instant dataSaida) {
+	public void setDataSaida(Date dataSaida) {
 		this.dataSaida = dataSaida;
 	}
 	public Integer getKilometragem() {

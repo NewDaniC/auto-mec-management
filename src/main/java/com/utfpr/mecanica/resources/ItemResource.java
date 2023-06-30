@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.utfpr.mecanica.entities.Categoria;
 import com.utfpr.mecanica.entities.Item;
 import com.utfpr.mecanica.services.ItemService;
 

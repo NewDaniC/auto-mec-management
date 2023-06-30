@@ -11,8 +11,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -29,14 +27,16 @@ public class Endereco implements Serializable {
 	private String complemento;
 	private String bairro;
 	private String cep;
+	private String cidade;
+	private String estado;
 	
-	/*******************************************************/
-	// ENDERECO CIDADE
-	
-	@ManyToOne
-	@JoinColumn(name = "cidade_id") /* Nome da chave estrangeira que vai ser criada no banco */
-	private Cidade cidade; /* Associação com Cidade */
-	/*******************************************************/
+//	/*******************************************************/
+//	// ENDERECO CIDADE
+//	
+//	@ManyToOne
+//	@JoinColumn(name = "cidade_id") /* Nome da chave estrangeira que vai ser criada no banco */
+//	private Cidade cidade; /* Associação com Cidade */
+//	/*******************************************************/
 	
 	/*******************************************************/
 	// ENDERECO PESSOA
@@ -50,7 +50,7 @@ public class Endereco implements Serializable {
 		
 	}
 	
-	public Endereco(Long id, String longradouro, String numero, String complemento, String bairro, String cep, Cidade cidade) {
+	public Endereco(Long id, String longradouro, String numero, String complemento, String bairro, String cep, String cidade, String estado) {
 		super();
 		this.id = id;
 		this.longradouro = longradouro;
@@ -59,6 +59,7 @@ public class Endereco implements Serializable {
 		this.bairro = bairro;
 		this.cep = cep;
 		this.cidade = cidade;
+		this.estado = estado;
 	}
 
 	public Long getId() {
@@ -109,13 +110,29 @@ public class Endereco implements Serializable {
 		this.cep = cep;
 	}
 
-	public Cidade getCidade() {
+	public String getCidade() {
 		return cidade;
 	}
 
-	public void setCidade(Cidade cidade) {
+	public void setCidade(String cidade) {
 		this.cidade = cidade;
 	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}	
+
+//	public Cidade getCidade() {
+//		return cidade;
+//	}
+//
+//	public void setCidade(Cidade cidade) {
+//		this.cidade = cidade;
+//	}
 	
 	public List<Pessoa> getPessoa() {
 		return pessoa;
@@ -136,5 +153,5 @@ public class Endereco implements Serializable {
 			return false;
 		Endereco other = (Endereco) obj;
 		return Objects.equals(id, other.id);
-	}	
+	}
 }
